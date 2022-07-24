@@ -10,12 +10,21 @@
                 </tr>
                 <?php
                 $DB = new DB($do);
-                $rows = $DB->all();
+                $num = $DB->math('COUNT');
+                $limit = 4;
+                $pages = ceil($num / $limit);
+                $page = (isset($_GET['page'])) ? $_GET['page'] : 1;
+                if ($page > $pages || $page <= 0) {
+                    $page = 1;
+                }
+                $start = ($page - 1) * $limit;
+                $limitSql = " Limit $start,$limit";
+                $rows = $DB->all($limitSql);
                 foreach ($rows as $key => $row) {
                 ?>
                 <tr>
                     <td>
-                        <input type="text" name="text[]" value="<?=$row['text']?>">
+                        <textarea name="text[]" cols="30" rows="10" class="h-50"><?=$row['text']?></textarea>
                     </td>
                     <td>
                         <input type="checkbox" name="sh[]" value="<?=$row['id']?>" <?=($row['sh'] == 1)?'checked':''?>>
@@ -33,6 +42,31 @@
                 ?>
             </tbody>
         </table>
+        <div class="page cent" >
+            <?php
+            if ($page > 1) {
+            ?>
+                <a href="?do=<?= $do ?>&page=<?= $page - 1 ?>">
+                    &lt;
+                </a>
+            <?php
+            }
+            for ($i = 1; $i <= $pages; $i++) {
+            ?>
+                <a href="?do=<?= $do ?>&page=<?= $i ?>" class="<?=($page == $i)?'nowPgae':''?>">
+                    <?= $i ?>
+                </a>
+            <?php
+            }
+            if ($page < $pages) {
+            ?>
+                <a href="?do=<?= $do ?>&page=<?= $page + 1 ?>">
+                    &gt;
+                </a>
+            <?php
+            }
+            ?>
+        </div>
         <table style="margin-top:40px; width:70%;">
             <tbody>
                 <tr>

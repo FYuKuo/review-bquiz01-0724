@@ -30,8 +30,13 @@ foreach ($_POST['id'] as $key => $id) {
             case 'ad':
             case 'mvim':
             case 'image':
+                $row['sh'] = (isset($_POST['sh']) && in_array($id,$_POST['sh']))?1:0;
+                    
+            break;
+
             case 'news':
                 $row['sh'] = (isset($_POST['sh']) && in_array($id,$_POST['sh']))?1:0;
+                $row['text'] = $_POST['text']["$key"];
                     
             break;
                             
