@@ -103,7 +103,7 @@ include('./api/base.php');
 				if (file_exists('./back/' . $do . '.php')) {
 					include('./back/' . $do . '.php');
 				} else {
-					include('./back/title.php');
+					to('./back.php?do=title');
 				}
 				?>
 			</div>

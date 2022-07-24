@@ -91,7 +91,7 @@ class DB {
 
             $sql = "INSERT INTO `$this->table` (`$col`) VALUES ('$value')";
         }
-        echo $sql;
+        // echo $sql;
         return $this->pdo->exec($sql);
 
     }
@@ -254,6 +254,11 @@ class STR
     }
 }
 
+function alert($str){
+    echo "<script>";
+    echo "alert('$str')";
+    echo "</script>";
+}
 
 function dd($array)
 {

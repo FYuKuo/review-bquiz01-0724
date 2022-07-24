@@ -1,11 +1,11 @@
 <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
     <p class="t cent botli"><?= $STR->header ?></p>
     <form method="post" action="./api/edit.php">
-        <table width="100%" class="cent">
+        <table width="80%" class="cent m-auto">
             <tbody>
                 <tr class="yel">
-                    <td width="80%"><?= $STR->text ?></td>
-                    <td width="10%">顯示</td>
+                    <td width="40%"><?= $STR->acc ?></td>
+                    <td width="40%"><?= $STR->pw ?></td>
                     <td width="10%">刪除</td>
                 </tr>
                 <?php
@@ -15,10 +15,10 @@
                 ?>
                 <tr>
                     <td>
-                        <input type="text" name="text[]" value="<?=$row['text']?>" class="w-90">
+                        <input type="text" name="acc[]" value="<?=$row['acc']?>" class="w-90">
                     </td>
                     <td>
-                        <input type="checkbox" name="sh[]" value="<?=$row['id']?>" <?=($row['sh'] == 1)?'checked':''?>>
+                        <input type="password" name="pw[]" value="<?=$row['pw']?>" class="w-90">
                     </td>
                     <td>
                         <input type="checkbox" name="del[]" value="<?=$row['id']?>">
@@ -31,7 +31,7 @@
                 ?>
             </tbody>
         </table>
-        <table style="margin-top:40px; width:70%;">
+        <table style="margin-top:40px; width:80%;">
             <tbody>
                 <tr>
                     <td width="200px">
