@@ -4,32 +4,36 @@
         <table width="100%" class="cent">
             <tbody>
                 <tr class="yel">
-                    <td width="45%"><?= $STR->img ?></td>
-                    <td width="23%"><?= $STR->text ?></td>
+                    <td width="30%"><?= $STR->text ?></td>
+                    <td width="30%"><?= $STR->href ?></td>
+                    <td width="10%"><?= $STR->child ?></td>
                     <td width="7%">顯示</td>
                     <td width="7%">刪除</td>
                     <td></td>
                 </tr>
                 <?php
                 $DB = new DB($do);
-                $rows = $DB->all();
+                $rows = $DB->all(['parent'=>0]);
                 foreach ($rows as $key => $row) {
                 ?>
                 <tr>
                     <td>
-                        <img src="./img/<?=$row['img']?>" alt="" style="width: 300px;height:30px">
-                    </td>
-                    <td>
                         <input type="text" name="text[]" value="<?=$row['text']?>">
                     </td>
                     <td>
-                        <input type="radio" name="sh" value="<?=$row['id']?>" <?=($row['sh'] == 1)?'checked':''?>>
+                        <input type="text" name="href[]" value="<?=$row['href']?>">
+                    </td>
+                    <td>
+                        <?=$DB->math('COUNT',['parent'=>$row['id']])?>
+                    </td>
+                    <td>
+                        <input type="checkbox" name="sh[]" value="<?=$row['id']?>" <?=($row['sh'] == 1)?'checked':''?>>
                     </td>
                     <td>
                         <input type="checkbox" name="del[]" value="<?=$row['id']?>">
                     </td>
                     <td>
-                    <input type="button" onclick="op('#cover','#cvr','./modal/updateImg.php?do=<?= $do ?>&id=<?=$row['id']?>')" value="<?= $STR->updateBtn ?>">
+                    <input type="button" onclick="op('#cover','#cvr','./modal/menuChild.php?do=<?= $do ?>&id=<?=$row['id']?>')" value="<?= $STR->updateBtn ?>">
                     </td>
                     <input type="hidden" name="id[]" value="<?=$row['id']?>">
                     <input type="hidden" name="table" value="<?=$do?>">

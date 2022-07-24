@@ -172,6 +172,10 @@ input.w-90 {
 	width: 90%;
 }
 
+input.w-70 {
+	width: 70%;
+}
+
 .page>a {
 	color: #0CF;
 	text-decoration: none;

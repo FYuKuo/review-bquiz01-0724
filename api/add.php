@@ -40,6 +40,9 @@ switch($table) {
     break;
 
     case 'menu':
+        $data['sh'] = 1;
+        $data['href'] = $_POST['href'];
+        $data['parent'] = 0;
             
     break;
 
