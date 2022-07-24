@@ -34,13 +34,7 @@ foreach ($_POST['id'] as $key => $id) {
                 $row['sh'] = (isset($_POST['sh']) && in_array($id,$_POST['sh']))?1:0;
                     
             break;
-                    
-            case 'total':
-                    
-            break;
-        
-            case 'bottom':
-                    
+                            
             break;
         
             case 'admin':
