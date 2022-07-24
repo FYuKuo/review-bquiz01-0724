@@ -188,3 +188,20 @@ input.w-70 {
 .h-50 {
 	height: 50px;
 }
+
+.menu_out{
+	position: relative;
+}
+
+.mw {
+	display: none;
+	position: absolute;
+	width: 100%;
+	z-index: 100;
+	right: -150px;
+	top: 10px;
+}
+
+.im>img {
+	border: #F3DA49 4px solid;
+}

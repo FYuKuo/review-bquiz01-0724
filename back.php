@@ -1,6 +1,9 @@
 ﻿<?php
 $do = $_GET['do'] ?? 'title';
 include('./api/base.php');
+if(empty($_SESSION['user'])){
+	to('./index.php');
+}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0068)?do=admin&redo=title -->
@@ -74,7 +77,9 @@ include('./api/base.php');
 
 				<div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
 					<span class="t">
-						進站總人數 :1
+						進站總人數 :
+					<?=$Total->find(1)['text']?>
+						
 					</span>
 				</div>
 
@@ -91,7 +96,7 @@ include('./api/base.php');
 								</a>
 							</td>
 							<td>
-								<button onclick="document.cookie='user=';location.replace('?')" style="width:99%; margin-right:2px; height:50px;">
+								<button onclick="location.href='./api/logout.php'" style="width:99%; margin-right:2px; height:50px;">
 									管理登出
 								</button>
 							</td>

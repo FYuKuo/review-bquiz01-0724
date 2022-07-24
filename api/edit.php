@@ -5,16 +5,13 @@ $DB = new DB($table);
 
 foreach ($_POST['id'] as $key => $id) {
 
-    if(isset($_POST['del'])){
+if(isset($_POST['del'])){
     
-        foreach ($_POST['del'] as $del) {
+    if(in_array($id,$_POST['del'])){
+        $DB->del($id);
 
-            if($id == $del){
-                
-                $DB->del($id);
-            }
-        }
-
+    }
+    
 }else{
 
     

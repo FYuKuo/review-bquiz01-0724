@@ -9,12 +9,9 @@ if(isset($_POST['id'])){
     foreach ($_POST['id'] as $key => $id) {
         if(isset($_POST['del'])){
     
-            foreach ($_POST['del'] as $del) {
-    
-                if($id == $del){
-                    
-                    $DB->del($id);
-                }
+            if(in_array($id,$_POST['del'])){
+                $DB->del($id);
+        
             }
         }else {
             $row = $DB->find($id);
@@ -27,7 +24,9 @@ if(isset($_POST['id'])){
         }
     }
 
-}else{
+}
+
+if(isset($_POST['addtext'])){
 
     $data = [];
 
