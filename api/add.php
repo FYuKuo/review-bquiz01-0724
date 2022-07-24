@@ -18,17 +18,13 @@ switch($table) {
     case 'title':
         $data['sh'] = 0;
     break;
-
-            
+        
+        
     case 'ad':
-            
-    break;
-            
     case 'mvim':
-               
-    break;
-
     case 'image':
+    case 'news':    
+        $data['sh'] = 1;
             
     break;
 
@@ -37,10 +33,6 @@ switch($table) {
     break;
 
     case 'bottom':
-            
-    break;
-
-    case 'news':
             
     break;
 
