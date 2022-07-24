@@ -121,7 +121,7 @@ class DB {
         if(isset($arg[1])) {
             $sql = $sql . $arg[1];
         }
-
+        // echo $sql;
         return $this->pdo->query($sql)->fetchColumn();
     }
 

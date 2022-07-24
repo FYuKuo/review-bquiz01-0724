@@ -171,3 +171,12 @@ input.w-100 {
 input.w-90 {
 	width: 90%;
 }
+
+.page>a {
+	color: #0CF;
+	text-decoration: none;
+}
+
+.nowPgae {
+	font-size: 1.5rem;
+}

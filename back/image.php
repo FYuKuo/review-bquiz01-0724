@@ -11,30 +11,64 @@
                 </tr>
                 <?php
                 $DB = new DB($do);
-                $rows = $DB->all();
+                $num = $DB->math('COUNT');
+                $limit = 3;
+                $pages = ceil($num / $limit);
+                $page = (isset($_GET['page'])) ? $_GET['page'] : 1;
+                if ($page > $pages || $page <= 0) {
+                    $page = 1;
+                }
+                $start = ($page - 1) * $limit;
+                $limitSql = " Limit $start,$limit";
+                $rows = $DB->all($limitSql);
                 foreach ($rows as $key => $row) {
                 ?>
-                <tr>
-                    <td>
-                        <img src="./img/<?=$row['img']?>" alt="" style="width: 100px;height:68px">
-                    </td>
-                    <td>
-                        <input type="checkbox" name="sh[]" value="<?=$row['id']?>" <?=($row['sh'] == 1)?'checked':''?>>
-                    </td>
-                    <td>
-                        <input type="checkbox" name="del[]" value="<?=$row['id']?>">
-                    </td>
-                    <td>
-                    <input type="button" onclick="op('#cover','#cvr','./modal/updateImg.php?do=<?= $do ?>&id=<?=$row['id']?>')" value="<?= $STR->updateBtn ?>">
-                    </td>
-                    <input type="hidden" name="id[]" value="<?=$row['id']?>">
-                    <input type="hidden" name="table" value="<?=$do?>">
-                </tr>
+                    <tr>
+                        <td>
+                            <img src="./img/<?= $row['img'] ?>" alt="" style="width: 100px;height:68px">
+                        </td>
+                        <td>
+                            <input type="checkbox" name="sh[]" value="<?= $row['id'] ?>" <?= ($row['sh'] == 1) ? 'checked' : '' ?>>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="del[]" value="<?= $row['id'] ?>">
+                        </td>
+                        <td>
+                            <input type="button" onclick="op('#cover','#cvr','./modal/updateImg.php?do=<?= $do ?>&id=<?= $row['id'] ?>')" value="<?= $STR->updateBtn ?>">
+                        </td>
+                        <input type="hidden" name="id[]" value="<?= $row['id'] ?>">
+                        <input type="hidden" name="table" value="<?= $do ?>">
+                    </tr>
                 <?php
                 }
                 ?>
             </tbody>
         </table>
+        <div class="page cent">
+            <?php
+            if ($page > 1) {
+            ?>
+                <a href="?do=<?= $do ?>&page=<?= $page - 1 ?>">
+                    &lt;
+                </a>
+            <?php
+            }
+            for ($i = 1; $i <= $pages; $i++) {
+            ?>
+                <a href="?do=<?= $do ?>&page=<?= $i ?>" class="<?=($page == $i)?'nowPgae':''?>">
+                    <?= $i ?>
+                </a>
+            <?php
+            }
+            if ($page < $pages) {
+            ?>
+                <a href="?do=<?= $do ?>&page=<?= $page + 1 ?>">
+                    &gt;
+                </a>
+            <?php
+            }
+            ?>
+        </div>
         <table style="margin-top:40px; width:70%;">
             <tbody>
                 <tr>
