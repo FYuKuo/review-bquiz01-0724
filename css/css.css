@@ -159,3 +159,15 @@ input:focus,button:focus
 	cursor:pointer;
 	text-decoration:none;
 }
+
+.m-auto {
+	margin: auto;
+}
+
+input.w-100 {
+	width: 100%;
+}
+
+#w-100 {
+	width: 100%;
+}

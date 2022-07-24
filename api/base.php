@@ -74,16 +74,15 @@ class DB {
     public function save($array)
     {
         // 更新
-        if(in_array($array['id'],$array)){
-            $id = $array['id'];
+        if(isset($array['id'])){
 
             foreach ($array as $key => $value) {
-                if($value != $id) {
+                if($key != 'id') {
                     $tmp[] = "`$key` = '$value'";
                 }
             }
 
-            $sql = "UPDATE `$this->table` SET". join(',',$tmp) ."WHERE `id` = '$id'";
+            $sql = "UPDATE `$this->table` SET ". join(',',$tmp) ." WHERE `id` = '{$array['id']}'";
 
         }else{
         // 儲存
@@ -92,7 +91,7 @@ class DB {
 
             $sql = "INSERT INTO `$this->table` (`$col`) VALUES ('$value')";
         }
-
+        echo $sql;
         return $this->pdo->exec($sql);
 
     }

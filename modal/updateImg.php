@@ -2,26 +2,19 @@
 $do = $_GET['do']??'title';
 include('../api/base.php');
 ?>
-<h3 class="cent"><?=$STR->addHeader?></h3>
+<h3 class="cent"><?=$STR->updateHeader?></h3>
 <hr>
-<form action="../api/add.php" method="post" enctype="multipart/form-data">
+<form action="../api/updateImg.php" method="post" enctype="multipart/form-data">
     <table class="m-auto cent">
         <tr>
             <td>
-            <?=$STR->addImg?>
+            <?=$STR->updateImg?>
             </td>
             <td>
                 <input type="file" name="img" class="w-100">
             </td>
-        </tr>
-        <tr>
-            <td>
-                <?=$STR->addText?>
-            </td>
-            <td>
-                <input type="text" name="text" class="w-100">
-            </td>
             <input type="hidden" name="table" value="<?=$do?>">
+            <input type="hidden" name="id" value="<?=$_GET['id']?>">
         </tr>
         <tr>
             <td colspan="2">

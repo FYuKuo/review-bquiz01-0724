@@ -29,7 +29,7 @@ include('./api/base.php');
 
 		<div id="ms">
 			<div id="lf" style="float:left;">
-				<div id="menuput" class="dbor cent" >
+				<div id="menuput" class="dbor cent">
 					<!--主選單放此-->
 					<span class="t botli">後台管理選單</span>
 					<a style="color:#000; font-size:13px; text-decoration:none;" href="?do=title">
@@ -74,19 +74,39 @@ include('./api/base.php');
 
 				<div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
 					<span class="t">
-						進站總人數 :1 
+						進站總人數 :1
 					</span>
 				</div>
 
 			</div>
 
-			<?php
-				if(file_exists('./back/'.$do.'.php')){
-					include('./back/'.$do.'.php');
-				}else{
+			<div class="di" style="height:540px; border:#999 1px solid; width:76.5%; margin:2px 0px 0px 0px; float:left; position:relative; left:20px;">
+				<!--正中央-->
+				<table width="100%">
+					<tbody>
+						<tr>
+							<td style="width:70%;font-weight:800; border:#333 1px solid; border-radius:3px;" class="cent">
+								<a href="?do=admin" style="color:#000; text-decoration:none;">
+									後台管理區
+								</a>
+							</td>
+							<td>
+								<button onclick="document.cookie='user=';location.replace('?')" style="width:99%; margin-right:2px; height:50px;">
+									管理登出
+								</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<?php
+				if (file_exists('./back/' . $do . '.php')) {
+					include('./back/' . $do . '.php');
+				} else {
 					include('./back/title.php');
 				}
-			?>
+				?>
+			</div>
 
 			<div id="alt" style="position: absolute; width: 350px; min-height: 100px; word-break:break-all; text-align:justify;  background-color: rgb(255, 255, 204); top: 50px; left: 400px; z-index: 99; display: none; padding: 5px; border: 3px double rgb(255, 153, 0); background-position: initial initial; background-repeat: initial initial;"></div>
 			<script>

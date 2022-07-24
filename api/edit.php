@@ -1,44 +1,73 @@
 <?php
-switch($table) {
-    case 'title':
-            
-    break;
+include('./base.php');
+$table = $_POST['table'];
+$DB = new DB($table);
 
-            
-    case 'ad':
-            
-    break;
-            
-    case 'mvim':
-               
-    break;
+foreach ($_POST['id'] as $key => $id) {
 
-    case 'image':
-            
-    break;
+    if(isset($_POST['del'])){
+    
+        foreach ($_POST['del'] as $del) {
 
-    case 'total':
-            
-    break;
+            if($id == $del){
+                
+                $DB->del($id);
+            }
+        }
 
-    case 'bottom':
-            
-    break;
+}else{
 
-    case 'news':
-            
-    break;
-
-    case 'admin':
-            
-    break;
-
-    case 'menu':
-            
-    break;
-
-
+    
+        $row = $DB->find($id);
+        
+        switch($table) {
+            case 'title':
+                $row['sh'] = ($_POST['sh'] == $id)?1:0;
+                $row['text'] = $_POST['text']["$key"];
+            break;
+        
+                    
+            case 'ad':
+                    
+            break;
+                    
+            case 'mvim':
+                       
+            break;
+        
+            case 'image':
+                    
+            break;
+        
+            case 'total':
+                    
+            break;
+        
+            case 'bottom':
+                    
+            break;
+        
+            case 'news':
+                    
+            break;
+        
+            case 'admin':
+                    
+            break;
+        
+            case 'menu':
+                    
+            break;
+        
+        
+        }
+    
+        $DB->save($row);
+    }
 }
 
+
+
+to('../back.php?do='.$table);
 
 ?>

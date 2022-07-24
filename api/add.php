@@ -1,7 +1,22 @@
 <?php
+include('./base.php');
+$table = $_POST['table'];
+$DB = new DB($table);
+$data = [];
+
+if(isset($_FILES['img']['tmp_name'])) {
+    move_uploaded_file($_FILES['img']['tmp_name'],'../img/'.$_FILES['img']['name']);
+    $data['img'] = $_FILES['img']['name'];
+}
+
+if(isset($_POST['text'])) {
+    $data['text'] = $_POST['text'];
+}
+
+
 switch($table) {
     case 'title':
-            
+        $data['sh'] = 0;
     break;
 
             
@@ -40,5 +55,8 @@ switch($table) {
 
 }
 
+$DB->save($data);
+
+to('../back.php?do='.$table);
 
 ?>
